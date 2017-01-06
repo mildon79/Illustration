@@ -1,0 +1,20 @@
+{
+  "name": "mildon/illustration",
+  "authors": [
+    {
+      "name": "mildon79",
+      "email": "info@donef.cz"
+    }
+  ],
+  "require": {
+    "php": ">= 5.4.0",
+    "slim/slim": "^3.0",
+    "slim/php-view": "^2.2",
+    "slim/twig-view": "^2.1"
+  },
+  "autoload": {
+    "classmap": [
+      "app/module"
+    ]
+  }
+}
