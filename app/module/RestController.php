@@ -2,25 +2,19 @@
 namespace App\Module;
 
 use Interop\Container\ContainerInterface;
-use \Slim\Views\Twig;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 /**
- * Class BaseController
+ * Class RestController
  * @package App\Module
  */
-class BaseController
+class RestController
 {
     /**
      * @var ContainerInterface
      */
     protected $container;
-
-    /**
-     * @var \Slim\Views\Twig
-     */
-    protected $view;
 
     /**
      * Front_Controller_Index constructor.
@@ -29,9 +23,14 @@ class BaseController
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->view = $container->get('view');
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
     public function __invoke(Request $request, Response $response, array $args = null)
     {
         switch ($request->getMethod()) {
@@ -44,18 +43,14 @@ class BaseController
     }
 
     /**
-     * @return \Slim\Views\PhpRenderer
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return Response
      */
-    public function getView()
+    public function get(Request $request, Response $response, $args)
     {
-        return $this->view;
+        return $response;
     }
 
-    /**
-     * @param Twig $view
-     */
-    public function setView(Twig $view)
-    {
-        $this->view = $view;
-    }
 }

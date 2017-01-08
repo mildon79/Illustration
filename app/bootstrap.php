@@ -31,14 +31,15 @@ $app->get('/[{controller}[/{action}]]', function (Request $request, Response $re
     $viewLoader = $view->getLoader();
     $controller = isset($args['controller']) && is_string($args['controller']) ? trim($args['controller']) : 'index';
     $action = isset($args['action']) && is_string($args['action']) ? trim($args['action']) : 'index';
-    $className = "Default_Controller_" . ucfirst($controller);
-    /** @var BaseController $obj */
+    $className = "App\\Module\\Front\\Controller\\" . ucfirst($controller);
+    /** @var App\Module\BaseController $obj */
     $obj = new $className($this);
     call_user_func(array($obj, lcfirst($action) . "Action"));
 
-    $viewLoader->addPath(__DIR__ . '/module/Default/view/Index/');
+    $viewLoader->addPath(__DIR__ . '/module/Front/view/Index/');
     return $view->render($response, lcfirst($action) . '.twig', array('test' => 123));
 })->setName('default');
 
+$app->get('/api/v1/[{controller}]', App\Module\Api\Controller\RandomData::class)->setName('api');
 $app->run();
 

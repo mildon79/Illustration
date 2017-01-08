@@ -1,18 +1,23 @@
 module.exports = {
-	entry: "./src/index.jsx",  //vstupní bod aplikace
+	entry: "./src/index.jsx",
 	output: {
-		filename: "./www/js/bundle.js"   //výstupní balík všech zdrojových kódů
+		filename: "./www/js/bundle.js"
 	},
 	module: {
-		// loaders: [
-		// 	{
-		// 		test: /\.jsx$/,    //Všechny soubory s koncovkou js...
-		// 		loader: 'babel-loader',  //prožeň babel-loaderem (integrace babelu a webpacku
-		// 		query: {
-		// 			presets: ['react', 'es2015'], //vybrané babel presety: https://babeljs.io/docs/plugins/#presets
-		// 			plugins: ["transform-class-properties"] //vybrané pluginy https://babeljs.io/docs/plugins/#transform-plugins
-		// 		}
-		// 	}
-		// ]
+		loaders: [
+			{
+				test: /\.jsx$/,
+				loader: 'babel-loader',
+				query: {
+					presets: ['react', 'es2015'],
+					plugins: ["transform-class-properties"]
+				}
+			},
+			{test: /\.css$/, exclude: /\.useable\.css$/, loader: "style-loader!css-loader"},
+			{test: /\.useable\.css$/, loader: "style-loader/useable!css-loader"},
+			{test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url'}
+
+		]
+
 	}
 };
