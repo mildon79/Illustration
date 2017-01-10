@@ -2,7 +2,7 @@
 namespace App\Module;
 
 use Interop\Container\ContainerInterface;
-use \Slim\Views\Twig;
+use Slim\Views\Twig;
 use Slim\Http\Request;
 use Slim\Http\Response;
 

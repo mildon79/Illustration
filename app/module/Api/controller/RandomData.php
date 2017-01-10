@@ -16,12 +16,13 @@ class RandomData extends RestController
 
     }
 
-    public function get(Request $request, Response $response, $args) {
+    public function get(Request $request, Response $response, $args)
+    {
 
-        return $response->withJson(array('test'=>123));
+        return $response->withJson(array('test' => 123))
+            ->withAddedHeader('X-Total-Count', 123);
+
     }
-
-
 
 
 }
